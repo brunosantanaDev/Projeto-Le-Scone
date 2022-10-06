@@ -30,15 +30,6 @@ $s-device: 480px;
   }
 }
 
-img {
-  @include d(m) {
-    width: 100%;
-  }
-  @include d(s) {
-    width: 100%;
-  }
-}
-
 // Função do Grid
 @function grid($col, $offset: false) {
   $width: $col / $cols * 100 + "%";
@@ -113,10 +104,6 @@ img {
     padding-right: 10px;
   }
   @include clearfix;
-
-  &:last-of-type {
-    margin-bottom: 50px;
-  }
 }
 
 .container {
