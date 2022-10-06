@@ -112,9 +112,7 @@ $s-device: 480px;
 
 @mixin row {
   position: relative;
-  margin-left: 0;
-  margin-right: 0;
-  //border: 1px solid blue;
+  border: 0px solid blue;
   @include d(s) {
     margin-left: 0px;
     margin-right: 0px;
