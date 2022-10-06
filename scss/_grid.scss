@@ -1,39 +1,50 @@
 // Variaveis do grid
 
 $cols: 12;
-$gutter:20px;
+$gutter: 20px;
 $l-device: 1200px;
 $m-device: 760px;
 $s-device: 480px;
 
 // Box-sizing
-*, *::after, *::before{
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
 // Mixin de Mideia-Querie
-@mixin d($size){
+@mixin d($size) {
   @if $size == l {
-    @media screen and (min-width: $l-device){
+    @media screen and (min-width: $l-device) {
       @content;
     }
-  }@else if $size == m {
-    @media screen and (min-width: $m-device) and (max-width: #{$l-device - 1}){
+  } @else if $size == m {
+    @media screen and (min-width: $m-device) and (max-width: #{$l-device - 1}) {
       @content;
     }
-  }@else if $size == s {
-    @media screen and (max-width: #{$m-device - 1}){
+  } @else if $size == s {
+    @media screen and (max-width: #{$m-device - 1}) {
       @content;
     }
   }
 }
 
+img {
+  @include d(m) {
+    width: 100%;
+  }
+  @include d(s) {
+    width: 100%;
+  }
+}
+
 // Função do Grid
-@function grid($col, $offset: false){
-  $width: $col / $cols * 100 + "%"; 
+@function grid($col, $offset: false) {
+  $width: $col / $cols * 100 + "%";
   $result: calc(#{$width} - #{$gutter});
 
-  @if $offset == offset{
+  @if $offset == offset {
     $gutter: $gutter / 2;
     $result: calc(#{$width} + #{$gutter});
   }
@@ -41,22 +52,20 @@ $s-device: 480px;
 }
 
 // Criando os grids nas classes
-@for $i from 1 through $cols{
-  .grid-#{$i}{
+@for $i from 1 through $cols {
+  .grid-#{$i} {
     width: grid($i);
   }
 }
 
 // Mixin estrutura
-@mixin grid-structure{
-  border: 1px solid red;
-  height: 30px;
-margin-bottom: 20px;
+@mixin grid-structure {
+  //border: 1px solid red;
   float: left;
   min-height: 1px;
   margin-left: $gutter / 2;
   margin-right: $gutter / 2;
-  @include d(s){
+  @include d(s) {
     width: 100%;
     float: none;
     margin-left: 0px;
@@ -64,75 +73,68 @@ margin-bottom: 20px;
   }
 }
 
-[class^="grid-"]{
+[class^="grid-"] {
   @include grid-structure;
 }
 
-
-@for $i from 1 through $cols{
-  .offset-#{$i}{
+@for $i from 1 through $cols {
+  .offset-#{$i} {
     margin-left: grid($i, offset);
     @extend %offset;
   }
 }
 
-@include d(s){
-  %offset{ 
+@include d(s) {
+  %offset {
     margin-left: 0px;
   }
 }
 
 // Mixin de Clearflix
-@mixin clearfix{
-  &::after, &::before{
-    content:"";
+@mixin clearfix {
+  &::after,
+  &::before {
+    content: "";
     display: table;
     clear: both;
   }
 }
 
-@mixin container{
+@mixin container {
   max-width: $l-device;
-  margin: 0px auto;
+  margin: 20px auto 0px auto;
   position: relative;
-  border: 2px solid #000;
-  @include d(m){
+  @include d(m) {
     max-width: $m-device;
   }
-  @include d(s){
+  @include d(s) {
     max-width: $s-device;
     padding-left: 10px;
     padding-right: 10px;
   }
   @include clearfix;
+
+  &:last-of-type {
+    margin-bottom: 50px;
+  }
 }
 
-.container{
+.container {
   @include container;
 }
 
 @mixin row {
-  position:relative;
-  margin-left: 0px;
-  margin-right: 0px;
-  border: 2px solid blue;
-  @include d(s){
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  //border: 1px solid blue;
+  @include d(s) {
     margin-left: 0px;
     margin-right: 0px;
   }
   @include clearfix;
 }
 
-.row{
+.row {
   @include row;
 }
-
-.clearboth{
-  clear: both;
-}
-
-
-
-
-
-

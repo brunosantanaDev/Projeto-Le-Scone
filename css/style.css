@@ -52,8 +52,22 @@ table {
   border-spacing: 0;
 }
 
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
+}
+
+@media screen and (min-width: 760px) and (max-width: 1199px) {
+  img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 759px) {
+  img {
+    width: 100%;
+  }
 }
 
 .grid-1 {
@@ -105,9 +119,6 @@ table {
 }
 
 [class^="grid-"] {
-  border: 1px solid red;
-  height: 30px;
-  margin-bottom: 20px;
   float: left;
   min-height: 1px;
   margin-left: 10px;
@@ -179,9 +190,8 @@ table {
 
 .container {
   max-width: 1200px;
-  margin: 0px auto;
+  margin: 20px auto 0px auto;
   position: relative;
-  border: 2px solid #000;
 }
 
 @media screen and (min-width: 760px) and (max-width: 1199px) {
@@ -204,11 +214,14 @@ table {
   clear: both;
 }
 
+.container:last-of-type {
+  margin-bottom: 50px;
+}
+
 .row {
   position: relative;
-  margin-left: 0px;
-  margin-right: 0px;
-  border: 2px solid blue;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 @media screen and (max-width: 759px) {
@@ -222,13 +235,4 @@ table {
   content: "";
   display: table;
   clear: both;
-}
-
-.clearboth {
-  clear: both;
-}
-
-div {
-  font-family: 'Aref Ruqaa', serif;
-  font-family: 'PT Mono', monospace;
 }
