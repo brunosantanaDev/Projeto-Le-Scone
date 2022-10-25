@@ -11,7 +11,7 @@
 >## Tecnologias?
 - HTML
 
-- CSS
+- CSS/SASS
 
 - GIT/GITHUB
 
